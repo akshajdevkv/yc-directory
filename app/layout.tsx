@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar"
+import type { Metadata } from "next"
 import localFont from "next/font/local"
 import "./globals.css"
 
@@ -6,42 +7,47 @@ import "./globals.css"
 const workSans = localFont({
   src: [
     {
-      path: "./fonts/WorkSans-Black.ttf",
+      path: "../assets/fonts/WorkSans-Black.ttf",
       weight: "900",
       style: "normal",
     },
     {
-      path: "./fonts/WorkSans-Bold.ttf",
+      path: "../assets/fonts/WorkSans-Bold.ttf",
       weight: "700",
     },
     {
-      path: "./fonts/WorkSans-Medium.ttf",
+      path: "../assets/fonts/WorkSans-Medium.ttf",
       weight: "500",
     },
     {
-      path: "./fonts/WorkSans-Regular.ttf",
+      path: "../assets/fonts/WorkSans-Regular.ttf",
       weight: "400",
     },
     {
-      path: "./fonts/WorkSans-Light.ttf",
+      path: "../assets/fonts/WorkSans-Light.ttf",
       weight: "300",
     },
     {
-      path: "./fonts/WorkSans-ExtraLight.ttf",
+      path: "../assets/fonts/WorkSans-ExtraLight.ttf",
       weight: "200",
     },
     {
-      path: "./fonts/WorkSans-Thin.ttf",
+      path: "../assets/fonts/WorkSans-Thin.ttf",
       weight: "100",
     },
-    ]
+    ],
+    variable: "--font-work-sans",
+     
 })
-
-export default function Layout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+  title: "Startup",
+  description: "Startup",
+}
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <main className="font-work-sans">
+      <body className={`${workSans.variable} font-work-sans`}>
+        <main  >
           <Navbar />
           {children}
         </main>
