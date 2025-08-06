@@ -64,11 +64,11 @@
     }
 
     .section_container {
-        @apply px-6 py-10 max-w-7xl mx-auto inline-block; 
+        @apply px-6 py-10 max-w-7xl mx-auto ; 
     }
 
     .card_grid {
-        @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+        @apply grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5;
     }
 
     .card_grid-sm {

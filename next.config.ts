@@ -6,7 +6,15 @@ const nextConfig: NextConfig = {
      remotePatterns:[
       {
         protocol:'https',
-        hostname:'*' ,
+        hostname:'*'
+      },
+      { 
+        protocol: 'https', 
+        hostname: 'yt3.googleusercontent.com' 
+      },
+      { 
+        protocol: 'https', 
+        hostname: 'i.ytimg.com' 
       }
     ]
   }
