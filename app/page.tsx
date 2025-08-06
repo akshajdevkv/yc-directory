@@ -3,12 +3,13 @@ import StartupCard, {StartupCardType} from "@/components/StartupCard";
 import { STARTUP_QUERY } from "@/sanity/lib/queries";
 import { client } from "@/sanity/lib/client";
 import { Startup } from "@/app/sanity/types";
+import { SanityLive, sanityFetch } from "@/sanity/lib/live";
 
 export default async function Home({searchParams}:{
   searchParams: Promise<{query?: string}>
 }) {
   const query = (await searchParams).query
-  const posts = await client.fetch(STARTUP_QUERY, {slug: query || ""})
+  const {data:posts}= await sanityFetch({query:STARTUP_QUERY,params:{slug:query || ""}})
   return <>
   <section className="pink_container">
   <h1 className="heading">Pitch your startup. <br /> Connect with entrepreneurs.</h1>
@@ -27,10 +28,11 @@ export default async function Home({searchParams}:{
           <StartupCard key={post?._id} post={post} />
         ))
       ):(
-        <p className="text-16-regular">No posts found</p>
+        <p className="text-16-regular">No startups found</p>
       )}
 
     </ul>
   </section>
+  <SanityLive />
   </>
 }

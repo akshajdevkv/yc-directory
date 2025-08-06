@@ -6,8 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
-  ,
+    "lint": "next lint",
     "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "pnpm@9.15.4",
@@ -30,6 +29,7 @@
     "react-dom": "19.1.0",
     "sanity": "^4.2.0",
     "sanity-plugin-markdown": "^6.0.0",
+    "server-only": "^0.0.1",
     "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
