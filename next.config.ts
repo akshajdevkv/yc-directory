@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
         hostname: 'i.ytimg.com' 
       }
     ]
+  },
+  devIndicators:{
+    position:'bottom-right',
   }
 };
 

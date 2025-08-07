@@ -10,10 +10,6 @@
     "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "pnpm@9.15.4",
-  "overrides": {
-    "react": "$react",
-    "react-dom": "$react-dom"
-  },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
     "@sanity/image-url": "^1.1.0",
@@ -22,9 +18,10 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.536.0",
+    "markdown-it": "^14.1.0",
     "next": "15.4.5",
     "next-auth": "^5.0.0-beta.29",
-    "next-sanity": "^10.0.7",
+    "next-sanity": "^10.0.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sanity": "^4.2.0",
@@ -36,7 +33,8 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^20.19.9",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.0.1",
