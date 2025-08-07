@@ -24,7 +24,7 @@ export const STARTUP_QUERY = defineQuery(
   description,
   category,
   image
-}`);
+}`,  );
 
 
 export const STARTUP_QUERY_BY_ID = defineQuery(
@@ -53,3 +53,15 @@ export const STARTUP_VIEWS_QUERY = defineQuery(
     views
   }`
 );
+
+export const AUTHOR_BY_GITHUB_QUERY = defineQuery(
+  `*[_type=="author" && _id == $id][0]{
+    _id,
+    id,
+    name,
+    username,
+    email,
+    image,
+    bio
+  }`
+)
