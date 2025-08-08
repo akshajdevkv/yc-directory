@@ -1,10 +1,11 @@
 import { auth } from '@/auth';
-import React from 'react'
+  import React, { Suspense } from 'react'
 import { client } from '@/sanity/lib/client';
 import { notFound } from 'next/navigation';
 import { AUTHOR_BY_ID_QUERY } from '@/sanity/lib/queries';
 import Image from 'next/image';
 import UserStartups from '@/components/UserStartups';
+import { StartupCardSkeleton } from '@/components/StartupCard';
 
 const userPage = async ({params}:{params:Promise<{id:string}>}) => {
   const {id} = await params;
@@ -28,7 +29,9 @@ const userPage = async ({params}:{params:Promise<{id:string}>}) => {
         <p className='text-30-bold'>{session?.user?.id === user?._id ? 'Your' : 'All'} Startups</p>
         <ul className='card-grid_sm'>
 
-            <UserStartups id={user?._id} /> 
+            <Suspense fallback={<StartupCardSkeleton />}>
+              <UserStartups id={user?._id} />
+            </Suspense> 
 
         </ul>
       </div>

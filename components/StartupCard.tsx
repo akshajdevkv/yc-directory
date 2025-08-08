@@ -5,6 +5,7 @@ import { EyeIcon } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from './ui/button'
 import { Startup, Author } from '@/app/sanity/types'
+import { Skeleton } from './ui/skeleton'
 export type StartupCardType =  Omit<Startup,"author">&{author?:Author}
 
 const StartupCard = ({post}:{post:StartupCardType}) => {
@@ -73,3 +74,13 @@ const StartupCard = ({post}:{post:StartupCardType}) => {
 }
 
 export default StartupCard
+
+export const StartupCardSkeleton = () => {
+ return <> {
+  [0,1,2,3,4].map((index:number)=>(
+ <li key={index}><Skeleton className='startup-card_skeleton my-10 '  /></li>
+
+))}
+</>
+
+}
