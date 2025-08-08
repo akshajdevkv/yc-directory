@@ -8,9 +8,10 @@ import UserStartups from '@/components/UserStartups';
 import { StartupCardSkeleton } from '@/components/StartupCard';
 
 const userPage = async ({params}:{params:Promise<{id:string}>}) => {
-  const {id} = await params;
-  const session= await auth();
-    const user= await client.fetch(AUTHOR_BY_ID_QUERY,{id:session?.user?.id});
+  const { id } = await params;
+  const session = await auth();
+  // Use the route param for the GROQ $id to avoid undefined param errors
+  const user = await client.fetch(AUTHOR_BY_ID_QUERY, { id });
   if(!user){
     return notFound() 
   }
