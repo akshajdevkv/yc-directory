@@ -6,11 +6,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatDate(date: string) {
-  return new Date(date).toLocaleDateString('en-US', {
+  // Use UTC to avoid hydration mismatches between server and client
+  const d = new Date(date)
+  return new Intl.DateTimeFormat('en-US', {
     month: 'long',
     day: 'numeric',
-    year: 'numeric'
-  })
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(d)
 }
 
 export function  parseServerActionResponse<T>(response:T){
