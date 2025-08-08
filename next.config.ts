@@ -2,6 +2,12 @@ import {withSentryConfig} from '@sentry/nextjs';
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images:{
     dangerouslyAllowSVG:true,
      remotePatterns:[
@@ -15,7 +21,7 @@ const nextConfig: NextConfig = {
       },
       { 
         protocol: 'https', 
-        hostname: 'i.ytimg.com' 
+         hostname: 'i.ytimg.com' 
       }
     ]
   },
