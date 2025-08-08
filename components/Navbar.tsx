@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
 import { auth, signIn, signOut } from "@/auth"
+import { LogOutIcon, PlusIcon } from 'lucide-react'
 
 const Navbar = async () => {
   const session = await auth()
@@ -22,8 +23,9 @@ const Navbar = async () => {
         <div className="flex items-center gap-5 text-black">
           {session && session?.user ? (
             <>
-              <Link href="/startup/create">
-                <span>Create</span>
+              <Link href="/startup/create" className="flex items-center gap-2">
+                <span className='max-sm:hidden'>Create</span>
+                <PlusIcon className="sm:hidden" />
               </Link>
               <form
                 action={async () => {
@@ -31,8 +33,9 @@ const Navbar = async () => {
                   await signOut()
                 }}
               >
-                <button type="submit">
-                  <span>Logout</span>
+                <button type="submit" className="flex items-center gap-2">
+                  <span className='max-sm:hidden'>Logout</span>
+                  <LogOutIcon className="sm:hidden" />
                 </button>
               </form>
               <Link href={`/user/${session?.user?.id}`}>
