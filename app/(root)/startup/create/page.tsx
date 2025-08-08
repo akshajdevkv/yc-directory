@@ -7,6 +7,7 @@ const page = async () => {
     if(!session){
         redirect("/")
     }
+    console.log(session)
   return <>
   <section className="pink_container !min-h-[230px]">
     <h1 className="heading">Submit your startup</h1>

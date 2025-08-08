@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { createPitch } from '@/sanity/lib/actions';
 
 const StartupForm = () => {
- 
+    
     const [errors,setErrors]= useState<Record<string,string>>({});
     const [pitch, setPitch] = React.useState("");
     const {toast}=useToast();

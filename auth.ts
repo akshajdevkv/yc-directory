@@ -13,11 +13,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks:{
         async signIn({user,account,profile}){
           
-      const existingUser = await client.fetch(AUTHOR_BY_GITHUB_QUERY,{id:profile?.id})
+      const githubId = Number(profile?.id); // Convert to number
+      const existingUser = await client.fetch(AUTHOR_BY_GITHUB_QUERY,{id:githubId})
        if(!existingUser){
         await writeClient.create({
           _type:"author",
-          id:profile?.id,
+          id:githubId, // Store as number
           name:user?.name,
           username:profile?.login,
           email:user?.email,
@@ -29,18 +30,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async jwt({token,account,profile}){
       if(account && profile){
-        const user = await client.fetch(AUTHOR_BY_GITHUB_QUERY,{id:profile?.id})
+        const githubId = Number(profile?.id); // Convert to number
+        const user = await client.fetch(AUTHOR_BY_GITHUB_QUERY,{id:githubId})
+        
         if(user){
-          token.id = user?._id
+          token.id = user._id;  // ← This line is critical!
         }
       }
       return token;
     },
-    async session({session,token}){
-      if(session?.user && token?.id) {
-        session.user.id = token.id as string;
-      }
-      return session;
+    async session({ session, token }) {
+     
+      // Explicitly merge custom fields into the returned session object
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id ,
+           
+        },
+      } as typeof session & { user: { id?: string } };
     }
   } 
 
