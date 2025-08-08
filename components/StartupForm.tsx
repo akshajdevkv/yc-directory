@@ -10,6 +10,7 @@ import { formSchema } from '@/lib/validation';
 import { z } from 'zod';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
+import { createPitch } from '@/sanity/lib/actions';
 
 const StartupForm = () => {
  
@@ -27,7 +28,7 @@ const StartupForm = () => {
                 link: formData.get('link') as string,
                 pitch: formData.get('pitch') as string,
             };
-            
+            const result = await createPitch(formValues,formData,pitch);
          
             setErrors({});
             await formSchema.parseAsync(formValues);    
@@ -40,7 +41,8 @@ const StartupForm = () => {
                 description: "Your startup has been submitted successfully.",
                 variant: "success",
             });
-            // router.push(`/startup/${result.data.id}`)
+            
+            router.push(`/startup/${result.data._id}`)
             return { error: "", status: 'SUCCESS' };
         } catch (error: any) {
             if(error instanceof z.ZodError){
