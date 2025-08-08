@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
 import { auth, signIn, signOut } from "@/auth"
-import { LogOutIcon, PlusIcon } from 'lucide-react'
+import { LogOutIcon, PlusIcon, UserIcon } from 'lucide-react'
 
 const Navbar = async () => {
   const session = await auth()
@@ -39,7 +39,8 @@ const Navbar = async () => {
                 </button>
               </form>
               <Link href={`/user/${session?.user?.id}`}>
-                <span>{session?.user?.name}</span>
+                <span className='max-sm:hidden'>{session?.user?.name}</span>
+                <UserIcon className="sm:hidden" />  
               </Link>
             </>
           ) : (
