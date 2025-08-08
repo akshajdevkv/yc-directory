@@ -27,6 +27,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     return <div>Startup not found</div>
   }
  const parsedContent = md.render(post?.pitch||'');
+ 
   return (
     <>
     <section className="pink_container min-h-[230px]">
@@ -40,15 +41,15 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="flex-between gap-5">
                 <Link href={`/user/${post.author?._id}`} className="flex gap-2 items-center mb-3">
                 <Image 
-                src={post.author.image}
+                src={post?.author?.image || "https://placehold.co/72x72"}
                  alt="avatar" 
                  width={72} 
                  height={72} 
                  className="rounded-full drop-shadow-lg"
                  />
                    <div>
-                <p className="text-20-medium">{post.author.name}</p>
-                <p className="text-16-medium !text-black-300">@{createUsername(post.author.name)}</p>
+                <p className="text-20-medium">{post?.author?.name}</p>
+                <p className="text-16-medium !text-black-300">@{createUsername(post?.author?.name || "")}</p>
               </div>
             
                      </Link>
