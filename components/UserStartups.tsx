@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client'
 import { STARTUP_QUERY_BY_AUTHOR_ID } from '@/sanity/lib/queries'
 import StartupCard from './StartupCard'
 import Link from 'next/link'
-import React from 'react'
+ import React from 'react'
 
 const UserStartups = async ({id}:{id:string}) => {
     const startups = await client.fetch(STARTUP_QUERY_BY_AUTHOR_ID, {id})
